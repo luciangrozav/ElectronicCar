@@ -9,9 +9,18 @@ public abstract class Car {
     private String audiosystem;
     private String battery;
     private String engine;
+    private String action;
 
     private int weight;
     private int horsepower;
+
+    public String getAction() {
+        return action;
+    }
+
+    public void setAction(String action) {
+        this.action = action;
+    }
 
     public String getMultimedia() {
         return multimedia;
@@ -84,5 +93,7 @@ public abstract class Car {
     public void setHorsepower(int horsepower) {
         this.horsepower = horsepower;
     }
+
+
 
 }
