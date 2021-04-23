@@ -3,10 +3,19 @@ package org.fasttrackit;
 public class Track {
 
 
-    String name; // Mediu: urban, rural, autostrada;
+    String name; // Mediu: urban, rural, autostrada; -> type:1, 2, 3.
      int length;
      String obstacle;
-     int obstacleposition;
+     double obstacleposition;
+     int type;
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
 
     public String getName() {
         return name;
@@ -32,11 +41,11 @@ public class Track {
         this.obstacle = obstacle;
     }
 
-    public int getObstacleposition() {
+    public double getObstacleposition() {
         return obstacleposition;
     }
 
-    public void setObstacleposition(int obstacleposition) {
+    public void setObstacleposition(double obstacleposition) {
         this.obstacleposition = obstacleposition;
     }
 }

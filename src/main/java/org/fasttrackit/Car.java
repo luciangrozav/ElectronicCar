@@ -13,6 +13,15 @@ public abstract class Car {
 
     private int weight;
     private int horsepower;
+    private double energylevel;
+
+    public double getEnergylevel() {
+        return energylevel;
+    }
+
+    public void setEnergylevel(double energylevel) {
+        this.energylevel = energylevel;
+    }
 
     public String getAction() {
         return action;

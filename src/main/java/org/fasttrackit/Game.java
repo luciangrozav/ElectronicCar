@@ -21,6 +21,7 @@ public class Game {
         car1.setEngine("Electric");
         car1.setBattery("Panasonic");
         car1.setAction("Forward");
+        car1.setEnergylevel(200);
         // type-casting
         ((Tesla)car1).setOwner("Elon Musk");
         ((Tesla)car1).setHeadquarters("California");
@@ -38,6 +39,7 @@ public class Game {
         car2.setEngine("Diesel");
         car2.setBattery("Varta");
         car2.setAction("Forward");
+        car2.setEnergylevel(100);
         ((Volkswagen)car2).setOwner("Herbert Diess");
         ((Volkswagen)car2).setHeadquarters("Wolfsburg");
         ((Volkswagen)car2).setFactory("Wolfsburg Factory Plant");
@@ -54,6 +56,7 @@ public class Game {
         car3.setEngine("Electric");
         car3.setBattery("A123Systems");
         car3.setAction("Forward");
+        car3.setEnergylevel(150);
         ((BMW)car3).setOwner("Harald Kruger");
         ((BMW)car3).setHeadquarters("Munich");
         ((BMW)car3).setFactory("BMW Group Plant Munich");
@@ -66,7 +69,7 @@ public class Game {
     {
         initialiseCars();
         initialiseTracks();
-        autopilot(cars[0].getHorsepower(), tracks[0].getLength());
+        autopilot(cars[0].getHorsepower(), tracks[0].getLength(), cars[0].getEnergylevel(), tracks[0].getObstacleposition(), tracks[0].getObstacle());
 
     }
 
@@ -76,19 +79,21 @@ public class Game {
 
         track1.setName("Highway");
         track1.setLength(10);  //km
-        track1.setObstacle("Construction ahead!");
+        track1.setObstacle("Warning! Obstacle ahead!");
         track1.setObstacleposition(7);  //km
+        track1.setType(3);
 
         tracks[0]=track1;
 
     }
-    public void autopilot(int p, double d)
+    public void autopilot(int p, double d, double en, double obspos, String s)
     {
         double acceleration=0;  // a = dV/dT;
         int time=0;
         double realdistance=0;
         double speed=0;
         double maxSpeed=55.55;
+        obspos=obspos*1000;
 
         if(p<200)
             acceleration=100000/(12*3600);
@@ -101,9 +106,20 @@ public class Game {
         if(p>=800 && p<1000)
             acceleration=100000/(2*3600);
 
-        while(realdistance < (d*1000) )
+        while(realdistance < (d*1000) && en>0)
         {
             time++;
+
+            if(p<200)
+            en=en-0.2;
+            if(p>=200 && p<400)
+                en=en-0.4;
+            if(p>=400 && p<600)
+                en=en-0.6;
+            if(p>=600 && p<800)
+                en=en-0.8;
+            if(p>=800 && p<1000)
+                en=en-1;
 
             if(speed> maxSpeed)
                 realdistance = maxSpeed *time;
@@ -114,15 +130,42 @@ public class Game {
             }
 
             System.out.println("Time: " + time + " s");
+
             if(speed<=maxSpeed)
             System.out.println("Speed: " + speed*3.6 + "km/h");
             if(speed>maxSpeed)
-                System.out.println("Speed: " + maxSpeed*3.6 + "km/h");
+                System.out.println("Speed: " + maxSpeed*3.61 + "km/h");
+
             System.out.println("Distance: " + realdistance/1000 + " km");
+
+            System.out.println("Energy level:" + en);
+
+            radar(realdistance, obspos, s);
+
             System.out.println(" ");
         }
+        if(en<=0)
+            System.out.println("Car stopped, no energy left!");
         if(realdistance>=(d*1000))
             System.out.println("Finish!");
     }
+
+    public void radar(double realdistance, double obspos, String s)
+    {
+        if (realdistance < obspos-100)
+            System.out.println("Direction: Forward");
+        if(realdistance > obspos-100 && realdistance < obspos-10)
+        {System.out.println("Direction: Left");
+        System.out.println(s);}
+        if(realdistance > obspos-10 && realdistance < obspos+10)
+        {System.out.println("Direction: Forward");
+        System.out.println(s);}
+        if (realdistance > obspos+10 && realdistance < obspos+100)
+        {System.out.println("Direction: Right");
+            System.out.println(s);}
+        if (realdistance > obspos+100)
+            System.out.println("Direction: Forward");
+    }
+
 
 }
