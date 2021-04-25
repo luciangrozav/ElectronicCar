@@ -121,7 +121,7 @@ public class Game {
             if(p>=800 && p<1000)
                 en=en-1;
 
-            if(speed> maxSpeed)
+                 if(speed> maxSpeed)
                 realdistance = maxSpeed *time;
 
             if(speed<=maxSpeed) {
@@ -129,12 +129,23 @@ public class Game {
                 realdistance = speed * time;
             }
 
+
             System.out.println("Time: " + time + " s");
 
-            if(speed<=maxSpeed)
+            if (realdistance>obspos-100 && realdistance<obspos+100)
+            {
+                if(speed>42)
+                System.out.println("Speed: " + (speed*3.6 - 100) + "km/h");
+                if(speed<42 && speed>27)
+                    System.out.println("Speed: " + (speed*3.6 - 50) + "km/h");
+            }
+            else
+            {
+                if(speed<=maxSpeed)
             System.out.println("Speed: " + speed*3.6 + "km/h");
             if(speed>maxSpeed)
                 System.out.println("Speed: " + maxSpeed*3.61 + "km/h");
+            }
 
             System.out.println("Distance: " + realdistance/1000 + " km");
 
@@ -144,14 +155,18 @@ public class Game {
 
             System.out.println(" ");
         }
+
         if(en<=0)
             System.out.println("Car stopped, no energy left!");
+
         if(realdistance>=(d*1000))
             System.out.println("Finish!");
     }
 
-    public void radar(double realdistance, double obspos, String s)
+
+    private void radar(double realdistance, double obspos, String s)
     {
+
         if (realdistance < obspos-100)
             System.out.println("Direction: Forward");
         if(realdistance > obspos-100 && realdistance < obspos-10)
@@ -166,6 +181,5 @@ public class Game {
         if (realdistance > obspos+100)
             System.out.println("Direction: Forward");
     }
-
 
 }

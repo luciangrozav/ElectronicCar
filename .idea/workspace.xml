@@ -6,11 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="78f51b0e-acc7-4b68-9a01-203ad1857848" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/fasttrackit/Car.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/fasttrackit/Car.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/fasttrackit/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/fasttrackit/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/fasttrackit/Track.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/fasttrackit/Track.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/fasttrackit/Car.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/fasttrackit/Car.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/fasttrackit/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/fasttrackit/Game.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +66,8 @@
       <updated>1619001356902</updated>
       <workItem from="1619001358237" duration="5684000" />
       <workItem from="1619087609096" duration="6412000" />
-      <workItem from="1619162697816" duration="5185000" />
+      <workItem from="1619162697816" duration="5307000" />
+      <workItem from="1619348437969" duration="3073000" />
     </task>
     <task id="LOCAL-00001" summary="Initialise objects(cars) + put them in lists;">
       <created>1619007507537</created>
@@ -86,7 +83,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619094103113</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Method radar() implemented;">
+      <created>1619168092641</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1619168092641</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -95,6 +99,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initialise objects(cars) + put them in lists;" />
     <MESSAGE value="First method implemented;" />
-    <option name="LAST_COMMIT_MESSAGE" value="First method implemented;" />
+    <MESSAGE value="Method radar() implemented;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Method radar() implemented;" />
   </component>
 </project>
