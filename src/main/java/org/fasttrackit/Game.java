@@ -121,29 +121,27 @@ public class Game implements SystemFunctionality {
             if(p>=800 && p<1000)
                 en=en-1;
 
-                 if(speed> maxSpeed)
-                realdistance = maxSpeed *time;
-
             if(speed<=maxSpeed) {
                 speed = acceleration * time;
                 realdistance = speed * time;
             }
+            else if(speed> maxSpeed)
+                realdistance = maxSpeed *time;
 
+            radar(realdistance, obspos, speed);
 
             System.out.println("Time: " + time + " s");
-
-
-
 
             System.out.println("Distance: " + realdistance/1000 + " km");
 
             System.out.println("Energy level:" + en);
 
-            radar(realdistance, obspos, s, speed);
             if(speed<=maxSpeed)
                 System.out.println("Speed: " + speed*3.6 + "km/h");
             if(speed>maxSpeed)
                 System.out.println("Speed: " + maxSpeed*3.61 + "km/h");
+
+            lanechange(realdistance, obspos, s);
 
             System.out.println(" ");
         }
@@ -156,39 +154,38 @@ public class Game implements SystemFunctionality {
     }
 
 
-    public void radar(double realdistance, double obspos, String s, double speed)
+    public void lanechange(double realdistance, double obspos, String s)
     {
 
         if (realdistance < obspos-100)
             System.out.println("Direction: Forward");
+
         if(realdistance > obspos-100 && realdistance < obspos-10)
         {System.out.println("Direction: Left");
         System.out.println(s);
-        brake(speed);
+
         }  // s- warning-ul
         if(realdistance > obspos-10 && realdistance < obspos+10)
         {System.out.println("Direction: Forward");
         System.out.println(s);
-            brake(speed);
         }
         if (realdistance > obspos+10 && realdistance < obspos+100)
         {System.out.println("Direction: Right");
             System.out.println(s);
-            brake(speed);}
+           }
         if (realdistance > obspos+100)
             System.out.println("Direction: Forward");
 
-        //brake
     }
 
-    public void brake(double speed)
+    public void radar(double realdistance, double obspos, double speed)
     {
-        if(speed < 27)
-            speed-=6;
-        if(speed>27 && speed<42)
-            speed-=15;
-        if(speed >42 && speed<56)
-            speed-=15;
+        if (realdistance > obspos-100 && realdistance < obspos+100)
+        {
+           speed = speed - 20;
+
+
+        }
 
     }
 

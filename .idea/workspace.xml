@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="78f51b0e-acc7-4b68-9a01-203ad1857848" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/fasttrackit/SystemFunctionality.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/fasttrackit/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/fasttrackit/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/fasttrackit/SystemFunctionality.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/fasttrackit/SystemFunctionality.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/org/fasttrackit/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/fasttrackit/Game.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -37,7 +37,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Practice" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunManager">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -49,17 +49,6 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -82,7 +71,8 @@
       <workItem from="1619087609096" duration="6412000" />
       <workItem from="1619162697816" duration="5307000" />
       <workItem from="1619348437969" duration="3372000" />
-      <workItem from="1619504082520" duration="1659000" />
+      <workItem from="1619504082520" duration="1883000" />
+      <workItem from="1619535183337" duration="1393000" />
     </task>
     <task id="LOCAL-00001" summary="Initialise objects(cars) + put them in lists;">
       <created>1619007507537</created>
@@ -112,7 +102,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619351806779</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Introducing method brake();">
+      <created>1619505972701</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1619505972701</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -123,6 +120,7 @@
     <MESSAGE value="First method implemented;" />
     <MESSAGE value="Method radar() implemented;" />
     <MESSAGE value="Method radar() implemented; + reduced speed while avoiding the obstacle;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Method radar() implemented; + reduced speed while avoiding the obstacle;" />
+    <MESSAGE value="Introducing method brake();" />
+    <option name="LAST_COMMIT_MESSAGE" value="Introducing method brake();" />
   </component>
 </project>
