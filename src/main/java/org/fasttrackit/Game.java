@@ -114,12 +114,14 @@ public class Game implements SystemFunctionality {
     {
         double acceleration=0;  // a = dV/dT;
         int time=0;  // secunde
-        int t=1;
-        int i=1;
+        int t=0;
+        int i=0;
         double realdistance=0;
         double speed=0;
         double maxSpeed=55.55;
         obspos=obspos*1000;
+        double d1=0;
+        double d2=0;
 
         if(p<200)
             acceleration=100000/(12*3600);
@@ -147,31 +149,33 @@ public class Game implements SystemFunctionality {
             if(p>=800 && p<1000)
                 en=en-1;
 
-            if( realdistance < (obspos-100))
+            //speed
+            if( realdistance < (obspos-100))  //1
             {
                 if(speed<= maxSpeed)
-                {
                     speed = acceleration * time;
-                }
 
                 realdistance = speed * time;
             }
 
-            if (radar(realdistance, obspos))
+            if (radar(realdistance, obspos))  //2
             {
+                t++;
                 speed = speed-10;
                 en=en-5;
-                realdistance += (speed * (t++));
+                d1=speed * t;
+                realdistance += d1;
             }
 
-            if( realdistance > (obspos+100))
+
+            if( realdistance > (obspos+100))  //3
             {
-                speed += acceleration * (i++);
+                i++;
+                if(speed<=maxSpeed)
+                speed += acceleration * i;
 
-            if(speed>=maxSpeed)
-            speed=maxSpeed;
-
-            realdistance += speed * i;
+            d2=speed*i;
+            realdistance += d2;
 
             }
 
@@ -200,22 +204,19 @@ public class Game implements SystemFunctionality {
     public void lanechange(double realdistance, double obspos, String s)
     {
 
+        // s- warning-ul
         if (realdistance < obspos-100)
             System.out.println("Direction: Forward");
-
-        if(realdistance >= obspos-100 && realdistance < obspos-10)
-        {System.out.println("Direction: Left");
-        System.out.println(s);
-
-        }  // s- warning-ul
-        if(realdistance >= obspos-10 && realdistance < obspos+10)
-        {System.out.println("Direction: Forward");
+        if(realdistance >= obspos-100 && realdistance < obspos)
+        {
+            System.out.println("Direction: Left");
         System.out.println(s);
         }
-        if (realdistance >= obspos+10 && realdistance < obspos+100)
-        {System.out.println("Direction: Right");
-            System.out.println(s);
-           }
+        if(realdistance >= obspos && realdistance < obspos+100)
+        {
+            System.out.println("Direction: Right");
+        System.out.println(s);
+        }
         if (realdistance > obspos+100)
             System.out.println("Direction: Forward");
 
@@ -226,10 +227,8 @@ public class Game implements SystemFunctionality {
 
         if (realdistance >= obspos-100 && realdistance <= obspos+100)
         {
-
          return true;
         } else return false;
-
 
     }
 
