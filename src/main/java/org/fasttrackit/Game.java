@@ -1,9 +1,12 @@
 package org.fasttrackit;
 
+import java.util.Scanner;
+
 public class Game implements SystemFunctionality {
 
     private Car[] cars = new Car[3];
     private Track[] tracks= new Track[3];
+    Scanner scanner = new Scanner(System.in);
 
     private void initialiseCars()
     {
@@ -67,9 +70,30 @@ public class Game implements SystemFunctionality {
 
     public void start()
     {
+        int n;
+        System.out.println("Choose your car:");
+        System.out.println("1) Tesla Model S");
+        System.out.println("2) Volkswagen Passat");
+        System.out.println("3) BMW i8");
+        System.out.println(" ");
+        System.out.println("Choose:");
+        n=scanner.nextInt();
         initialiseCars();
         initialiseTracks();
-        autopilot(cars[0].getHorsepower(), tracks[0].getLength(), cars[0].getEnergylevel(), tracks[0].getObstacleposition(), tracks[0].getObstacle());
+        if(n==1)
+        {
+            System.out.println(cars[0].getName());
+            System.out.println("Race:");
+            autopilot(cars[0].getHorsepower(), tracks[0].getLength(), cars[0].getEnergylevel(), tracks[0].getObstacleposition(), tracks[0].getObstacle());}
+        if(n==2)
+        {
+            System.out.println(cars[1].getName());
+            System.out.println("Race:");
+            autopilot(cars[1].getHorsepower(), tracks[0].getLength(), cars[1].getEnergylevel(), tracks[0].getObstacleposition(), tracks[0].getObstacle());}
+        if(n==3)
+        {   System.out.println(cars[2].getName());
+            System.out.println("Race:");
+            autopilot(cars[2].getHorsepower(), tracks[0].getLength(), cars[2].getEnergylevel(), tracks[0].getObstacleposition(), tracks[0].getObstacle());}
 
     }
 
@@ -89,7 +113,9 @@ public class Game implements SystemFunctionality {
     public void autopilot(int p, double d, double en, double obspos, String s)
     {
         double acceleration=0;  // a = dV/dT;
-        int time=0;
+        int time=0;  // secunde
+        int t=1;
+        int i=1;
         double realdistance=0;
         double speed=0;
         double maxSpeed=55.55;
@@ -121,14 +147,34 @@ public class Game implements SystemFunctionality {
             if(p>=800 && p<1000)
                 en=en-1;
 
-            if(speed<=maxSpeed) {
-                speed = acceleration * time;
+            if( realdistance < (obspos-100))
+            {
+                if(speed<= maxSpeed)
+                {
+                    speed = acceleration * time;
+                }
+
                 realdistance = speed * time;
             }
-            else if(speed> maxSpeed)
-                realdistance = maxSpeed *time;
 
-            radar(realdistance, obspos, speed);
+            if (radar(realdistance, obspos))
+            {
+                speed = speed-10;
+                en=en-5;
+                realdistance += (speed * (t++));
+            }
+
+            if( realdistance > (obspos+100))
+            {
+                speed += acceleration * (i++);
+
+            if(speed>=maxSpeed)
+            speed=maxSpeed;
+
+            realdistance += speed * i;
+
+            }
+
 
             System.out.println("Time: " + time + " s");
 
@@ -136,10 +182,7 @@ public class Game implements SystemFunctionality {
 
             System.out.println("Energy level:" + en);
 
-            if(speed<=maxSpeed)
-                System.out.println("Speed: " + speed*3.6 + "km/h");
-            if(speed>maxSpeed)
-                System.out.println("Speed: " + maxSpeed*3.61 + "km/h");
+            System.out.println("Speed: " + speed*3.6 + "km/h");
 
             lanechange(realdistance, obspos, s);
 
@@ -160,16 +203,16 @@ public class Game implements SystemFunctionality {
         if (realdistance < obspos-100)
             System.out.println("Direction: Forward");
 
-        if(realdistance > obspos-100 && realdistance < obspos-10)
+        if(realdistance >= obspos-100 && realdistance < obspos-10)
         {System.out.println("Direction: Left");
         System.out.println(s);
 
         }  // s- warning-ul
-        if(realdistance > obspos-10 && realdistance < obspos+10)
+        if(realdistance >= obspos-10 && realdistance < obspos+10)
         {System.out.println("Direction: Forward");
         System.out.println(s);
         }
-        if (realdistance > obspos+10 && realdistance < obspos+100)
+        if (realdistance >= obspos+10 && realdistance < obspos+100)
         {System.out.println("Direction: Right");
             System.out.println(s);
            }
@@ -178,14 +221,15 @@ public class Game implements SystemFunctionality {
 
     }
 
-    public void radar(double realdistance, double obspos, double speed)
+    public boolean radar(double realdistance, double obspos)
     {
-        if (realdistance > obspos-100 && realdistance < obspos+100)
+
+        if (realdistance >= obspos-100 && realdistance <= obspos+100)
         {
-           speed = speed - 20;
 
+         return true;
+        } else return false;
 
-        }
 
     }
 

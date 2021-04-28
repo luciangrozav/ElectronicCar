@@ -8,7 +8,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/fasttrackit/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/fasttrackit/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/fasttrackit/SystemFunctionality.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/fasttrackit/SystemFunctionality.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/fasttrackit/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/fasttrackit/Game.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +71,8 @@
       <workItem from="1619162697816" duration="5307000" />
       <workItem from="1619348437969" duration="3372000" />
       <workItem from="1619504082520" duration="1883000" />
-      <workItem from="1619535183337" duration="1393000" />
+      <workItem from="1619535183337" duration="1424000" />
+      <workItem from="1619601583974" duration="11894000" />
     </task>
     <task id="LOCAL-00001" summary="Initialise objects(cars) + put them in lists;">
       <created>1619007507537</created>
@@ -109,7 +109,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619505972701</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Introducing method brake(); 1">
+      <created>1619536605216</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1619536605216</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -121,6 +128,7 @@
     <MESSAGE value="Method radar() implemented;" />
     <MESSAGE value="Method radar() implemented; + reduced speed while avoiding the obstacle;" />
     <MESSAGE value="Introducing method brake();" />
-    <option name="LAST_COMMIT_MESSAGE" value="Introducing method brake();" />
+    <MESSAGE value="Introducing method brake(); 1" />
+    <option name="LAST_COMMIT_MESSAGE" value="Introducing method brake(); 1" />
   </component>
 </project>
