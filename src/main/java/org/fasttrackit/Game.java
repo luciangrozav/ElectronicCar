@@ -152,6 +152,8 @@ public class Game implements SystemFunctionality {
             {
                 if(speed<= maxSpeed)
                     speed = acceleration * time;
+                if(speed>maxSpeed)
+                    speed=maxSpeed;
 
                 realdistance += speed;
             }
