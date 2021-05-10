@@ -80,20 +80,22 @@ public class Game implements SystemFunctionality {
         n=scanner.nextInt();
         initialiseCars();
         initialiseTracks();
-        if(n==1)
-        {
-            System.out.println(cars[0].getName());
-            System.out.println("Race:");
-            autopilot(cars[0].getHorsepower(), tracks[0].getLength(), cars[0].getEnergylevel(), tracks[0].getObstacleposition(), tracks[0].getObstacle());}
-        if(n==2)
-        {
-            System.out.println(cars[1].getName());
-            System.out.println("Race:");
-            autopilot(cars[1].getHorsepower(), tracks[0].getLength(), cars[1].getEnergylevel(), tracks[0].getObstacleposition(), tracks[0].getObstacle());}
-        if(n==3)
-        {   System.out.println(cars[2].getName());
-            System.out.println("Race:");
-            autopilot(cars[2].getHorsepower(), tracks[0].getLength(), cars[2].getEnergylevel(), tracks[0].getObstacleposition(), tracks[0].getObstacle());}
+//        if(n==1)
+//        {
+//            System.out.println(cars[0].getName());
+//            System.out.println("Race:");
+//            autopilot(cars[0].getHorsepower(), tracks[0].getLength(), cars[0].getEnergylevel(), tracks[0].getObstacleposition(), tracks[0].getObstacle());}
+//        if(n==2)
+//        {
+//            System.out.println(cars[1].getName());
+//            System.out.println("Race:");
+//            autopilot(cars[1].getHorsepower(), tracks[0].getLength(), cars[1].getEnergylevel(), tracks[0].getObstacleposition(), tracks[0].getObstacle());}
+//        if(n==3)
+//        {   System.out.println(cars[2].getName());
+//            System.out.println("Race:");
+//            autopilot(cars[2].getHorsepower(), tracks[0].getLength(), cars[2].getEnergylevel(), tracks[0].getObstacleposition(), tracks[0].getObstacle());}
+
+        highwayspeed(cars[1].getHorsepower(), cars[1].getEnergylevel(), tracks[0].getLength());
 
     }
 
@@ -110,7 +112,7 @@ public class Game implements SystemFunctionality {
         tracks[0]=track1;
 
     }
-    public void autopilot(int p, double d, double en, double obspos, String s)
+    public void autopilot(int p, double d, double en, double obspos, String s)  //scenario1
     {
         double acceleration=0;  // a = dV/dT;
         int time=0;  // secunde
@@ -228,6 +230,111 @@ public class Game implements SystemFunctionality {
         {
          return true;
         } else return false;
+
+    }
+
+    public void highwayspeed(int p, double en, double d)  // scenario2
+    {
+        System.out.println("Pedal level: {0, 1, 2, 3}");
+        System.out.println("Brake level: {0, 1, 2, 3}");
+        System.out.println(" ");
+
+        double speed=0;
+        int i=1;
+        double maxSpeed=0;
+        double acceleration=0;
+        int pedallevel; // how much you accelerate; (0, 1, 2, 3)
+        int brakelevel=0; // 0, 1, 2, 3
+        int time=0;
+        double di=0;
+
+        if(p<200)
+            acceleration=100000/(12*3600);  // test only for cars <200 horsepower
+//        if(p>=200 && p<400)
+//            acceleration=100000/(8*3600);
+//        if(p>=400 && p<600)
+//            acceleration=100000/(6*3600);
+//        if(p>=600 && p<800)
+//            acceleration=100000/(4*3600);
+//        if(p>=800 && p<1000)
+//            acceleration=100000/(2*3600);
+
+        System.out.println("Pedal level: ");
+        pedallevel = scanner.nextInt();
+        System.out.println(" ");
+        System.out.println("Set maximum speed (km/h):");
+        maxSpeed= scanner.nextDouble();
+        maxSpeed=maxSpeed*0.27;
+
+        if(pedallevel==1)
+            acceleration=acceleration-1.3;
+        if(pedallevel==2)
+            acceleration=acceleration-0.8;
+
+
+        while(di< (d*1000) && en>0) {
+            time++;
+
+            if (p < 200)
+                en = en - 0.2;
+            if (p >= 200 && p < 400)
+                en = en - 0.4;
+            if (p >= 400 && p < 600)
+                en = en - 0.6;
+            if (p >= 600 && p < 800)
+                en = en - 0.8;
+            if (p >= 800 && p < 1000)
+                en = en - 1;
+
+            if (speed <= maxSpeed && pedallevel!=0)  // aici pui conditiile
+                speed = acceleration * time;
+            if(pedallevel==0)
+                speed=speed-0.4;
+            if (speed > maxSpeed)
+                speed = maxSpeed;
+            if(brakelevel>0)
+
+            di += speed;
+
+            System.out.println(" ");
+            System.out.println("Time: " + time);
+            System.out.println("Speed: " + speed * 3.6);
+            System.out.println("Distance:" + di / 1000);
+            System.out.println("Energy level:" + en);
+
+                if (time == 30 * i) // => behaviour of the car after 30s
+                {
+                    i++;
+                    System.out.println(" ");
+                    System.out.println("Pedal level: ");
+                    pedallevel = scanner.nextInt();
+                    System.out.println(" ");
+                    System.out.println("Brake level: ");
+                    brakelevel = scanner.nextInt();
+                    System.out.println(" ");
+
+//                    if (pedallevel == 1)
+//                        acceleration = 1;
+//                    if (pedallevel == 2)
+//                        acceleration = 1.5;
+//                    // pedallevel=3 -> maximum acceleration
+//
+//                    if (brakelevel == 2 && pedallevel == 0)
+//                        speed = speed - 0.6;
+//                    if (brakelevel == 3 && pedallevel == 0)
+//                        speed = speed - 1;
+
+                }
+
+        }
+        if(en<=0)
+            System.out.println("Car stopped, no energy left!");
+
+        if(di>=(d*1000))
+            System.out.println("Finish!");
+
+
+
 
     }
 
