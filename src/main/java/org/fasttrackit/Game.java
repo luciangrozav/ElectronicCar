@@ -117,6 +117,7 @@ public class Game implements SystemFunctionality {
         double acceleration=0;  // a = dV/dT;
         int time=0;  // secunde
         int i=0;
+        int t=0;
         double realdistance=0;
         double speed=0;
         double maxSpeed=55.55;
@@ -152,8 +153,11 @@ public class Game implements SystemFunctionality {
             //speed
             if( realdistance < obspos-500)  //1
             {
+                t++;
                 if(speed<= maxSpeed)
-                    speed = acceleration * time;
+                {speed += acceleration * t;
+                if(speed>30)
+                    speed-=10;} // frecarea cu aerul
                 if(speed>maxSpeed)
                     speed=maxSpeed;
 
@@ -169,10 +173,13 @@ public class Game implements SystemFunctionality {
                 realdistance += speed;
             }
 
-            if( realdistance > obspos+300)  //3
+            if( realdistance > obspos+500)  //3
             {
                 i++;
                 speed += acceleration * i;
+                speed-=2;
+                if(speed>35)
+                    speed-=5;
                 if(speed>maxSpeed)
                     speed=maxSpeed;
 
@@ -213,7 +220,7 @@ public class Game implements SystemFunctionality {
             System.out.println("Direction: Left");
         System.out.println(s);
         }
-        if(realdistance >= obspos && realdistance < obspos+300)
+        if(realdistance >= obspos && realdistance < obspos+500)
         {
             System.out.println("Direction: Right");
         System.out.println(s);
@@ -226,7 +233,7 @@ public class Game implements SystemFunctionality {
     public boolean radar(double realdistance, double obspos)
     {
 
-        if (realdistance >= obspos-500 && realdistance <= obspos+300)
+        if (realdistance >= obspos-500 && realdistance <= obspos+500)
         {
          return true;
         } else return false;

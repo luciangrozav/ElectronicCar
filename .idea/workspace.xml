@@ -76,7 +76,7 @@
       <workItem from="1619625550406" duration="1681000" />
       <workItem from="1619687452618" duration="3467000" />
       <workItem from="1620637802659" duration="8298000" />
-      <workItem from="1620721793273" duration="3005000" />
+      <workItem from="1620721793273" duration="4362000" />
     </task>
     <task id="LOCAL-00001" summary="Initialise objects(cars) + put them in lists;">
       <created>1619007507537</created>
@@ -155,7 +155,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620647195612</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="New method implemented; Completed- highwayspeed">
+      <created>1620725185186</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1620725185186</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -173,6 +180,7 @@
     <MESSAGE value="Highway Track done!" />
     <MESSAGE value="Highway Track done! corrected;" />
     <MESSAGE value="New method implemented;" />
-    <option name="LAST_COMMIT_MESSAGE" value="New method implemented;" />
+    <MESSAGE value="New method implemented; Completed- highwayspeed" />
+    <option name="LAST_COMMIT_MESSAGE" value="New method implemented; Completed- highwayspeed" />
   </component>
 </project>
