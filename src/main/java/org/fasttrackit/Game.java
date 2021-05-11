@@ -80,20 +80,20 @@ public class Game implements SystemFunctionality {
         n=scanner.nextInt();
         initialiseCars();
         initialiseTracks();
-//        if(n==1)
-//        {
-//            System.out.println(cars[0].getName());
-//            System.out.println("Race:");
-//            autopilot(cars[0].getHorsepower(), tracks[0].getLength(), cars[0].getEnergylevel(), tracks[0].getObstacleposition(), tracks[0].getObstacle());}
-//        if(n==2)
-//        {
-//            System.out.println(cars[1].getName());
-//            System.out.println("Race:");
-//            autopilot(cars[1].getHorsepower(), tracks[0].getLength(), cars[1].getEnergylevel(), tracks[0].getObstacleposition(), tracks[0].getObstacle());}
-//        if(n==3)
-//        {   System.out.println(cars[2].getName());
-//            System.out.println("Race:");
-//            autopilot(cars[2].getHorsepower(), tracks[0].getLength(), cars[2].getEnergylevel(), tracks[0].getObstacleposition(), tracks[0].getObstacle());}
+        if(n==1)
+        {
+            System.out.println(cars[0].getName());
+            System.out.println("Race:");
+            autopilot(cars[0].getHorsepower(), tracks[0].getLength(), cars[0].getEnergylevel(), tracks[0].getObstacleposition(), tracks[0].getObstacle());}
+        if(n==2)
+        {
+            System.out.println(cars[1].getName());
+            System.out.println("Race:");
+            autopilot(cars[1].getHorsepower(), tracks[0].getLength(), cars[1].getEnergylevel(), tracks[0].getObstacleposition(), tracks[0].getObstacle());}
+        if(n==3)
+        {   System.out.println(cars[2].getName());
+            System.out.println("Race:");
+            autopilot(cars[2].getHorsepower(), tracks[0].getLength(), cars[2].getEnergylevel(), tracks[0].getObstacleposition(), tracks[0].getObstacle());}
 
         highwayspeed(cars[1].getHorsepower(), cars[1].getEnergylevel(), tracks[0].getLength());
 
@@ -241,11 +241,13 @@ public class Game implements SystemFunctionality {
 
         double speed=0;
         int i=1;
+        int k=0;
         double maxSpeed=0;
         double acceleration=0;
         int pedallevel; // how much you accelerate; (0, 1, 2, 3)
         int brakelevel=0; // 0, 1, 2, 3
-        int time=0;
+        int time=0;  // timp total
+        int t=0;  // timp folosit pentru cresterea vitezei prin accelerare
         double di=0;
 
         if(p<200)
@@ -266,6 +268,7 @@ public class Game implements SystemFunctionality {
         maxSpeed= scanner.nextDouble();
         maxSpeed=maxSpeed*0.27;
 
+        // Start
         if(pedallevel==1)
             acceleration=acceleration-1.3;
         if(pedallevel==2)
@@ -277,22 +280,45 @@ public class Game implements SystemFunctionality {
 
             if (p < 200)
                 en = en - 0.2;
-            if (p >= 200 && p < 400)
-                en = en - 0.4;
-            if (p >= 400 && p < 600)
-                en = en - 0.6;
-            if (p >= 600 && p < 800)
-                en = en - 0.8;
-            if (p >= 800 && p < 1000)
-                en = en - 1;
+//            if (p >= 200 && p < 400)
+//                en = en - 0.4;
+//            if (p >= 400 && p < 600)
+//                en = en - 0.6;
+//            if (p >= 600 && p < 800)
+//                en = en - 0.8;
+//            if (p >= 800 && p < 1000)
+//                en = en - 1;
 
-            if (speed <= maxSpeed && pedallevel!=0)  // aici pui conditiile
-                speed = acceleration * time;
-            if(pedallevel==0)
-                speed=speed-0.4;
+            if (pedallevel == 1 && brakelevel==0)
+                acceleration = 1;
+            if (pedallevel == 2 && brakelevel==0)
+                acceleration = 1.5;
+            if(pedallevel == 3 && brakelevel==0)
+                acceleration=100000/(12*3600);
+
+            if (brakelevel == 1 && pedallevel == 0)
+            {speed = speed - 0.4;
+            k++;}
+            if (brakelevel == 2 && pedallevel == 0)
+            {speed = speed - 0.6;
+                k++;}
+            if (brakelevel == 3 && pedallevel == 0)
+            {speed = speed - 1;
+                k++;}
+
+           if(k!=0)
+               t=0;
+
+            if (speed <= maxSpeed && pedallevel!=0 && brakelevel==0)  // doar cand accelerezi
+            {
+                t++;
+                speed += acceleration * t;}
+
+            if(pedallevel==0  && brakelevel==0)  // frecarea cu aerul
+                speed=speed-0.2;
             if (speed > maxSpeed)
                 speed = maxSpeed;
-            if(brakelevel>0)
+
 
             di += speed;
 
@@ -312,17 +338,6 @@ public class Game implements SystemFunctionality {
                     System.out.println("Brake level: ");
                     brakelevel = scanner.nextInt();
                     System.out.println(" ");
-
-//                    if (pedallevel == 1)
-//                        acceleration = 1;
-//                    if (pedallevel == 2)
-//                        acceleration = 1.5;
-//                    // pedallevel=3 -> maximum acceleration
-//
-//                    if (brakelevel == 2 && pedallevel == 0)
-//                        speed = speed - 0.6;
-//                    if (brakelevel == 3 && pedallevel == 0)
-//                        speed = speed - 1;
 
                 }
 
