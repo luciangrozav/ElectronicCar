@@ -80,6 +80,7 @@ public class Game implements SystemFunctionality {
         n=scanner.nextInt();
         initialiseCars();
         initialiseTracks();
+        citydrive(tracks[1].getWeatherconditions(),tracks[1].getLength(), cars[1].getHorsepower(), cars[1].getEnergylevel() );
         if(n==1)
         {
             System.out.println(cars[0].getName());
@@ -96,7 +97,7 @@ public class Game implements SystemFunctionality {
             autopilot(cars[2].getHorsepower(), tracks[0].getLength(), cars[2].getEnergylevel(), tracks[0].getObstacleposition(), tracks[0].getObstacle());}
 
         highwayspeed(cars[1].getHorsepower(), cars[1].getEnergylevel(), tracks[0].getLength());
-        citydrive(tracks[1].getWeatherconditions(),tracks[1].getLength(), cars[1].getHorsepower(), cars[1].getEnergylevel() );
+
 
     }
 
@@ -390,17 +391,18 @@ public class Game implements SystemFunctionality {
         int wiperintensity=0;
         double di=0;
 
-        if(cond == "Raining")
+        if(cond.equals("Raining"))
         {
-            System.out.println("In the city is raining. Set raining intensity (Low, High): ");
+            System.out.println("In the city is raining. Choose raining intensity (Low, High): ");
             weathertype = scanner.next();  // citesti String
 
         }
+        System.out.println(weathertype);
         System.out.println(" ");
 
-        if(weathertype == "Low")
+        if(weathertype.equals("Low"))
             wiperintensity=2;
-        if(weathertype == "High")
+        if(weathertype.equals("High"))
             wiperintensity=4;
 
         if(power<200)
