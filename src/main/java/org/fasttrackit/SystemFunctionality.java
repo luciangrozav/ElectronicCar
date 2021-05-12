@@ -6,4 +6,5 @@ public interface SystemFunctionality{
     void lanechange(double realdistance, double obspos, String s);
     boolean radar(double realdistance, double obspos);
     void highwayspeed(int p, double en, double d);
+    void citydrive(String cond, int lngt, int power, double energy );
 }

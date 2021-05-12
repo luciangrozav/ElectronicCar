@@ -96,6 +96,7 @@ public class Game implements SystemFunctionality {
             autopilot(cars[2].getHorsepower(), tracks[0].getLength(), cars[2].getEnergylevel(), tracks[0].getObstacleposition(), tracks[0].getObstacle());}
 
         highwayspeed(cars[1].getHorsepower(), cars[1].getEnergylevel(), tracks[0].getLength());
+        citydrive(tracks[1].getWeatherconditions(),tracks[1].getLength(), cars[1].getHorsepower(), cars[1].getEnergylevel() );
 
     }
 
@@ -107,9 +108,20 @@ public class Game implements SystemFunctionality {
         track1.setLength(10);  //km
         track1.setObstacle("Warning! Obstacle ahead!");
         track1.setObstacleposition(7);  //km
-        track1.setType(3);
+        track1.setType(3);  // 3 ->  highway
 
         tracks[0]=track1;
+
+        Track track2 = new Track();
+
+        track2.setName("City");
+        track2.setWeatherconditions("Raining");
+        track2.setLength(1);
+        track2.setType(1);  // 1 -> urban
+        track2.setObstacle("Crosswalk");
+        track2.setObstacleposition(0.5);
+
+        tracks[1]=track2;
 
     }
     public void autopilot(int p, double d, double en, double obspos, String s)  //scenario1
@@ -206,6 +218,7 @@ public class Game implements SystemFunctionality {
 
         if(realdistance>=(d*1000))
             System.out.println("Finish!");
+        System.out.println(" ");
     }
 
 
@@ -285,7 +298,7 @@ public class Game implements SystemFunctionality {
         while(di< (d*1000) && en>0) {
             time++;
 
-            if (p < 200)
+            if (p < 200 && speed>0)
                 en = en - 0.2;
 //            if (p >= 200 && p < 400)
 //                en = en - 0.4;
@@ -307,10 +320,10 @@ public class Game implements SystemFunctionality {
             {speed = speed - 0.4;
             k++;}
             if (brakelevel == 2 && pedallevel == 0)
-            {speed = speed - 0.6;
+            {speed = speed - 1;
                 k++;}
             if (brakelevel == 3 && pedallevel == 0)
-            {speed = speed - 1;
+            {speed = speed - 2;
                 k++;}
 
            if(k!=0)
@@ -319,12 +332,16 @@ public class Game implements SystemFunctionality {
             if (speed <= maxSpeed && pedallevel!=0 && brakelevel==0)  // doar cand accelerezi
             {
                 t++;
-                speed += acceleration * t;}
+                speed += acceleration * t;
+                if(speed>30)
+                    speed-=10;}
 
             if(pedallevel==0  && brakelevel==0)  // frecarea cu aerul
                 speed=speed-0.2;
             if (speed > maxSpeed)
                 speed = maxSpeed;
+            if(speed<=0)
+                speed=0;
 
 
             di += speed;
@@ -357,6 +374,59 @@ public class Game implements SystemFunctionality {
 
 
 
+
+    }
+
+    public void citydrive(String cond, int lngt, int power, double energy )
+    {
+        System.out.println(" ");
+        System.out.println("Welcome to the city!");
+
+        String weathertype="Unknown";
+        double speed=0;
+        int time=0;
+        double acceleration=0;
+        int maxSpeed=17;
+        int wiperintensity=0;
+        double di=0;
+
+        if(cond == "Raining")
+        {
+            System.out.println("In the city is raining. Set raining intensity (Low, High): ");
+            weathertype = scanner.next();  // citesti String
+
+        }
+        System.out.println(" ");
+
+        if(weathertype == "Low")
+            wiperintensity=2;
+        if(weathertype == "High")
+            wiperintensity=4;
+
+        if(power<200)
+            acceleration=100000/(12*3600);
+
+
+        while(di< (lngt*1000) && energy>0)
+        {
+            time++;
+            speed+= acceleration*time;
+            if(speed> maxSpeed)
+                speed=maxSpeed;
+
+            di+=speed;
+
+            if (power < 200 && speed>0)
+                energy = energy - 0.2;
+
+            System.out.println("Time: " + time);
+            System.out.println("Speed: " + speed*3.6 + "km/h");
+            System.out.println("Distance: " + di/1000 + "km");
+            System.out.println("Energy: " + energy);
+            System.out.println("Windshield wiper intensity: " + wiperintensity);
+            System.out.println(" ");
+
+        }
 
     }
 

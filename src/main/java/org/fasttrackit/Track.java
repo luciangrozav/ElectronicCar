@@ -8,6 +8,15 @@ public class Track {
      String obstacle;
      double obstacleposition;
      int type;
+     String weatherconditions;
+
+    public String getWeatherconditions() {
+        return weatherconditions;
+    }
+
+    public void setWeatherconditions(String weatherconditions) {
+        this.weatherconditions = weatherconditions;
+    }
 
     public int getType() {
         return type;
